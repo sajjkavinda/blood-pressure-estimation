@@ -1,80 +1,56 @@
-📌 Overview
+Overview
 
-This repository contains the implementation and analysis for a machine learning coursework project focused on cuffless blood pressure (BP) estimation using phonocardiogram (PCG) signals. The project evaluates multiple regression-based machine learning models with a strong emphasis on statistical modelling concepts, model tuning, and generalisation analysis.
+This project investigates cuffless blood pressure (BP) estimation using phonocardiogram (PCG) signals and classical machine learning regression techniques. Traditional cuff-based BP measurements are uncomfortable and unsuitable for continuous monitoring. This work explores how statistical regression models can estimate systolic blood pressure from heart sound signals and demographic features.
 
-The study uses a publicly available PCG–BP dataset and applies classical regression techniques commonly used in biomedical signal processing.
+The study focuses on model comparison, statistical interpretation, and generalisation behaviour, rather than deep learning, in line with the learning outcomes of the module.
 
-🎯 Problem Statement
+Dataset
 
-Conventional cuff-based blood pressure measurement is uncomfortable and unsuitable for continuous monitoring. Recent research shows that physiological signals, such as PCG, can encode information relevant to blood pressure.
+A publicly available PCG–BP dataset is used, containing:
 
-The objective of this project is to:
+- Segmented PCG audio recordings
+- Corresponding systolic and diastolic BP values
+- Demographic features (age, gender, height, weight)
+- The dataset does not contain personally identifiable information (PII) and is suitable for academic research.
 
-Estimate systolic blood pressure from PCG signals
+Methodology
+Signal Processing
 
-Compare multiple regression models from a statistical perspective
+- PCG signals are converted to time–frequency representations using the Short-Time Fourier Transform (STFT)
+- Extracted spectral features are combined with demographic variables
+- Features are standardised prior to model training
 
-Analyse model performance, bias–variance trade-offs, and overfitting behaviour
+Regression Models
 
-📊 Dataset
+The following regression models are implemented and tuned:
 
-Type: Public PCG–Blood Pressure dataset
+- Ridge Regression
+- Lasso Regression
+- Support Vector Regression (RBF kernel)
+- Decision Tree Regressor
+- Gaussian Process Regression (RBF + WhiteKernel)
 
-Signals: Segmented phonocardiogram (PCG) recordings
+All models use explicitly tuned hyperparameters to reflect dataset characteristics and statistical assumptions rather than default settings.
 
-Labels: Systolic blood pressure (SBP)
+Evaluation
 
-Additional features: Demographic attributes (age, gender, height, weight, pulse)
+Models are evaluated using:
 
-Privacy: No personally identifiable information (PII)
+- Mean Squared Error (MSE)
+- R-squared (R²)
+- Learning Curves to analyse bias–variance trade-offs and overfitting behaviour
 
-Availability: Public research dataset used strictly for academic purposes
+Key Findings
 
-🛠 Methodology
-Feature Extraction
+- Linear models show high bias when applied to complex physiological signals
+- Kernel-based and probabilistic models better capture nonlinear BP relationships
+- Learning curves are essential for diagnosing overfitting in biomedical datasets
+- Gaussian Process Regression provides both accuracy and statistical robustness
 
-Short-Time Fourier Transform (STFT) applied to PCG signals
+Technologies Used
 
-Time–frequency spectral features extracted
-
-Features combined with demographic variables
-
-Regression Models Evaluated
-
-The following regression approaches were implemented and tuned explicitly:
-
-Ridge Regression
-
-Lasso Regression
-
-Support Vector Regression (RBF kernel)
-
-Decision Tree Regression
-
-Gaussian Process Regression (RBF + WhiteKernel)
-
-Each model was configured with non-default hyperparameters, selected based on the dataset size, signal characteristics, and statistical considerations.
-
-📈 Evaluation Strategy
-
-Train–test split
-
-Metrics:
-
-Mean Squared Error (MSE)
-
-R-squared (R²)
-
-Learning curves generated for all models
-
-Bias–variance behaviour analysed statistically
-
-🧪 Key Results (Summary)
-
-Linear models (Ridge, Lasso) showed higher bias and limited performance
-
-Support Vector Regression achieved strong generalisation
-
-Decision Tree Regression achieved very low error but showed overfitting
-
-Gaussian Process Regression provided the best overall performance, combining low error with statistical robustness and uncertainty modelling
+- Python
+- NumPy, Pandas
+- SciPy
+- scikit-learn
+- Matplotlib
